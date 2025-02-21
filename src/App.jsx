@@ -15,7 +15,7 @@ const ProtectedRoute = ({ element }) => {
   const token = Cookies.get("token");
   const location = useLocation();
 
-  return token ? element : <Navigate to="/" state={{ from: location }} replace />;
+  return token ? element : <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 function App() {
@@ -30,9 +30,10 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
         {/* Redirect logged-in users from Login & Signup */}
-        <Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login />} />
-        <Route path="/signup" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Signup />} />
+        <Route index path="/login" element={isAuthenticated ? <Navigate to="/login" /> : <Login />} />
+        <Route path="/signup" element={isAuthenticated ? <Navigate to="/signup" /> : <Signup />} />
 
         {/* Protected Routes */}
         

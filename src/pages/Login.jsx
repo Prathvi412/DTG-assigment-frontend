@@ -11,7 +11,7 @@ const Login = () => {
 
   useEffect(() => {
     if (Cookies.get("token")) {
-      navigate("/dashboard");
+      navigate("/signup");
     }
   }, [navigate]);
 
